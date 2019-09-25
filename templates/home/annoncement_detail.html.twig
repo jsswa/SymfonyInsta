@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Details de l'annonce
+{% endblock %}
+
+{% block body %}
+    {{parent()}}
+    {% set i = id %}
+
+
+    <div class="card text-center">
+        <div class="card-header">
+            {{cards.title[i]}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Prix:
+                {{cards.price[i]}}€</h5>
+            <p class="card-text">{{ cards.content[i]}}</p>
+            <a href="{{ path("annoncement") }}" class="btn btn-primary">Retour</a>
+        </div>
+        <div class="card-footer text-muted">
+            {{cards.created_date[i]}}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}HomePage
+{% endblock %}
+
+
+{% block body %}
+    {{ parent() }}
+
+    <br/>
+    <div class="card-deck">
+        {% for i in 1..2  %}
+
+            {% set r = random(0,9)  %}
+
+            {{ include('include/card.html.twig',{
+            
+            id:cards.id[r],
+            title:cards.title[r],
+            content:cards.content[r],
+            price:cards.price[r],
+            created_date:cards.created_date[r]
+        }
+        )}}
+
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
+
+{% block button %}
+    <br/>
+    <a href="{{path("annoncement")}}" role="button" type="button" class="btn btn-secondary btn-lg btn-block">Show More</a>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce
+{% endblock %}
+
+
+{% block body %}
+    {{parent()}}
+    <br/>
+    {% for i in 1..9  %}
+
+        {% set r = random(0,9)  %}
+
+        {{ include('include/card.html.twig',{
+            id:cards.id[r],
+            title:cards.title[r],
+            content:cards.content[r],
+            price:cards.price[r],
+            created_date:cards.created_date[r]
+        }
+        )}}
+
+    {% endfor %}
+
+{% endblock %}
