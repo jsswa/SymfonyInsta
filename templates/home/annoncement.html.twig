@@ -7,16 +7,14 @@
 {% block body %}
     {{parent()}}
     <br/>
-    {% for i in 1..9  %}
-
-        {% set r = random(0,9)  %}
+    {% for card in cards  %}
 
         {{ include('include/card.html.twig',{
-            id:cards.id[r],
-            title:cards.title[r],
-            content:cards.content[r],
-            price:cards.price[r],
-            created_date:cards.created_date[r]
+            id:card.id,
+            title:card.title,
+            content:card.content,
+            price:card.price,
+            created_date:card.createdAt|date("m/d/Y")
         }
         )}}
 

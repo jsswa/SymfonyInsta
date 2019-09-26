@@ -6,21 +6,19 @@
 
 {% block body %}
     {{parent()}}
-    {% set i = id %}
-
 
     <div class="card text-center">
         <div class="card-header">
-            {{cards.title[i]}}
+            {{card.title}}
         </div>
         <div class="card-body">
             <h5 class="card-title">Prix:
-                {{cards.price[i]}}€</h5>
-            <p class="card-text">{{ cards.content[i]}}</p>
+                {{card.price}}€</h5>
+            <p class="card-text">{{ card.content}}</p>
             <a href="{{ path("annoncement") }}" class="btn btn-primary">Retour</a>
         </div>
         <div class="card-footer text-muted">
-            {{cards.created_date[i]}}
+            {{card.createdAt|date("m/d/Y")}}
         </div>
     </div>
 {% endblock %}
