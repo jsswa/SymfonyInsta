@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce
+{% endblock %}
+
+
+{% block body %}
+    {{parent()}}
+    <br/>
+    {% for card in cards  %}
+
+        {{ include('include/card.html.twig',{
+            id:card.id,
+            title:card.title,
+            content:card.content,
+            price:card.price,
+            created_date:card.createdAt|date("m/d/Y")
+        }
+        )}}
+
+    {% endfor %}
+
+{% endblock %}

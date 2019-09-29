@@ -1,7 +1,8 @@
 {
     "authors": [
         {"name":"Johan Baker "},
-        {"name": "Vayango Koné"}
+        {"name": "Vayango Koné"},
+        {"name":"Nassirou Dialo"}
     ],
     "type": "project",
     "license": "proprietary",

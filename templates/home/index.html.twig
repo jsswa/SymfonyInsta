@@ -10,7 +10,9 @@
 
     <br/>
     <div class="card-deck">
-        {% for card in cards  %}
+        {% set i = 0 %}
+        {% for card in cards %}
+            {% if i < 2 %}
                 {{ include('include/card.html.twig',{
             
                     id:card.id,
@@ -20,17 +22,19 @@
                     created_date:card.createdAt|date("m/d/Y")
                 }
                 )}}
+            {% endif %}
 
+            {% if cards|length == 1 %}
 
-
-        {% endfor %}
-
-        {% if cards|length == 1 %}
-         
                 {{ include("include/card_default.html.twig") }}
-            
-        {% endif %}
-    </div>
+
+            {% endif %}
+
+        {% set i = i + 1 %}
+    {% endfor %}
+
+        </div>
+
 
 
 {% endblock %}
@@ -38,5 +42,8 @@
 {% block button %}
     <br/>
     <a href="{{path("annoncement")}}" role="button" type="button" class="btn btn-secondary btn-lg btn-block">Show More</a>
+    {% if app.user %}
+        <span class="badge badge-success">Vous êtes connecté: {{app.user.username}}</span>
+    {% endif %}
 
 {% endblock %}
