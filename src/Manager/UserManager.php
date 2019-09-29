@@ -4,15 +4,16 @@ namespace App\Manager;
 use App\Entity\Client;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Doctrine\ORM\EntityManagerInterface;
 
 class UserManager
 {
     /**
-     *  @var EntityManager
+     * @var EntityManagerInterface
      */
     private $entityManager;
 
-    public function __construct(ObjectManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -26,9 +27,9 @@ class UserManager
 
         $client->setCreatedAt(new \DateTime());
 
-        $entityManager->persist($client);
+        $this->entityManager->persist($client);
 
-        $entityManager->flush();
+        $this->entityManager->flush();
     }
 
     public function findAnnouncements()

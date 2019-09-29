@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use App\Manager;
+use App\Manager\UserManager;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Client;
 use App\Form\TaskType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class AddController extends AbstractController
+class AddController extends Controller
 {
     /**
      * @Route("/{_locale}/annoncement/add", 
@@ -21,6 +22,9 @@ class AddController extends AbstractController
     public function annoucement_add(Request $request): Response
     {
         $client = new Client();
+
+        $g = $this->get('user.manager');
+          
        $form = $this->createForm(TaskType::class, $client);
 
        $form->add('submit', SubmitType::class, [
@@ -31,8 +35,8 @@ class AddController extends AbstractController
        $form->handleRequest($request);
    
        if ($form->isSubmitted() && $form->isValid()) {
-
-        $g = $this->container->get('user.manager')->save($form);
+           
+        $g->save($form);
    
            return $this->redirectToRoute('home');
    
